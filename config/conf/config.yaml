@@ -14,14 +14,6 @@ sign_secret: 8D0C7OoCjQ4BViKSGqa4NBsSyuN
 # 日志配置
 log:
   file_path: /Users/liangjian/code/go/src/study/lemon/logs/
-  writers: file,stdout
-  logger_level: INFO
-  logger_file: /Users/liangjian/code/go/src/study/lemon/logs/log.log
-  log_format_text: true
-  rollingPolicy: daily
-  log_rotate_date: 1
-  log_rotate_size: 10
-  log_backup_count: 7
 
 # 数据库配置
 local_db:
