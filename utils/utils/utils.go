@@ -2,13 +2,32 @@ package utils
 
 import (
 	"fmt"
+	"encoding/json"
 	"time"
 	"crypto/md5"
 	"encoding/hex"
 	"net/url"
 	"sort"
 	"github.com/spf13/viper"
+	"os"
 )
+
+// 快速打印出一个变量，直接退出，加速调试
+func PanicJson(a interface{}) {
+	bs, err := json.MarshalIndent(a, "", "\t")
+	if err != nil {
+		panic(err)
+	}
+	panic(string(bs))
+}
+
+// 检查文件是否存在
+func FileIsExist(file string) bool {
+	if _, err := os.Stat(file); os.IsExist(err) || err == nil {
+		return true
+	}
+	return false
+}
 
 // 获取当前标准时间
 func GetTimeStandar() string {

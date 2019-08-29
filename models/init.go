@@ -2,10 +2,12 @@ package models
 
 import (
 	"fmt"
+	"log"
 	"github.com/jinzhu/gorm"
-	"github.com/lexkong/log"
 	"github.com/spf13/viper"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
+	"os"
+	"study/lemon/utils/logging"
 )
 
 type Database struct {
@@ -27,10 +29,18 @@ func openDB(username, password, addr, name string) *gorm.DB {
 	db, err := gorm.Open("mysql", config)
 
 	if err != nil {
-		log.Errorf(err, "Database connection failed. Database name: %s", name)
+		logging.Error(err, "Database connection failed. Database name: %s", name)
 	}
 
-	db.LogMode(viper.GetBool("gormlog"))
+	// Gorm有内置的日志记录器支持，默认情况下，它会打印发生的错误
+	db.LogMode(true)
+
+	filePath := logging.GetLogFilePath()
+	fileName := logging.GetLogFileName()
+	f, err := os.OpenFile(filePath+fileName, os.O_CREATE|os.O_RDWR|os.O_APPEND, 0644)
+	if err == nil {
+		db.SetLogger(log.New(f, "[GORM]", 5))
+	}
 
 	// 用于设置最大打开的连接数，默认值为0表示不限制.设置最大的连接数，可以避免并发太高导致连接mysql出现too many connections的错误。
 	//db.DB().SetMaxOpenConns(20000)

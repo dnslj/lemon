@@ -76,6 +76,14 @@
 			"notests": true
 		},
 		{
+			"importpath": "github.com/konsorten/go-windows-terminal-sequences",
+			"repository": "https://github.com/konsorten/go-windows-terminal-sequences",
+			"vcs": "git",
+			"revision": "f55edac94c9bbba5d6182a4be46d86a2c9b5b50e",
+			"branch": "master",
+			"notests": true
+		},
+		{
 			"importpath": "github.com/kr/fs",
 			"repository": "https://github.com/kr/fs",
 			"vcs": "git",
@@ -84,10 +92,18 @@
 			"notests": true
 		},
 		{
-			"importpath": "github.com/lexkong/log",
-			"repository": "https://github.com/lexkong/log",
+			"importpath": "github.com/lestrrat-go/file-rotatelogs",
+			"repository": "https://github.com/lestrrat-go/file-rotatelogs",
 			"vcs": "git",
-			"revision": "972f9cd951fc7e5c8797f1fb2b57b63b09ff4de9",
+			"revision": "e0a88b0fe8408240e1560882fc17cb0bf66765cd",
+			"branch": "master",
+			"notests": true
+		},
+		{
+			"importpath": "github.com/lestrrat-go/strftime",
+			"repository": "https://github.com/lestrrat-go/strftime",
+			"vcs": "git",
+			"revision": "5c849dd2c51dd10faf5f1b86abec2db1ac3b9101",
 			"branch": "master",
 			"notests": true
 		},
@@ -150,6 +166,14 @@
 			"notests": true
 		},
 		{
+			"importpath": "github.com/pkg/errors",
+			"repository": "https://github.com/pkg/errors",
+			"vcs": "git",
+			"revision": "27936f6d90f9c8e1145f11ed52ffffbfdb9e0af7",
+			"branch": "master",
+			"notests": true
+		},
+		{
 			"importpath": "github.com/pkg/sftp",
 			"repository": "https://github.com/pkg/sftp",
 			"vcs": "git",
@@ -158,10 +182,26 @@
 			"notests": true
 		},
 		{
+			"importpath": "github.com/rifflock/lfshook",
+			"repository": "https://github.com/rifflock/lfshook",
+			"vcs": "git",
+			"revision": "b9218ef580f59a2e72dad1aa33d660150445d05a",
+			"branch": "master",
+			"notests": true
+		},
+		{
 			"importpath": "github.com/satori/go.uuid",
 			"repository": "https://github.com/satori/go.uuid",
 			"vcs": "git",
 			"revision": "b2ce2384e17bbe0c6d34077efa39dbab3e09123b",
+			"branch": "master",
+			"notests": true
+		},
+		{
+			"importpath": "github.com/sirupsen/logrus",
+			"repository": "https://github.com/sirupsen/logrus",
+			"vcs": "git",
+			"revision": "de736cf91b921d56253b4010270681d33fdf7cb5",
 			"branch": "master",
 			"notests": true
 		},

@@ -3,12 +3,14 @@ package config
 import (
 	"github.com/spf13/viper"
 	"github.com/fsnotify/fsnotify"
-	"github.com/lexkong/log"
 	"strings"
+	"github.com/sirupsen/logrus"
+	"study/lemon/utils/logging"
 )
 
 type Config struct {
 	Name string
+	Logger *logrus.Logger
 }
 
 // 初始化
@@ -22,7 +24,7 @@ func Init(cfg string) error {
 		return err
 	}
 
-	c.initLogConfig()
+	logging.Init()
 	c.watchConfig()
 
 	return nil
@@ -51,24 +53,11 @@ func (c *Config) initConfig() error {
 	return nil
 }
 
-// 初始化日志配置文件
-func (c *Config) initLogConfig() {
-	log.InitWithConfig(&log.PassLagerCfg{
-		Writers:        viper.GetString("log.writers"),
-		LoggerLevel:    viper.GetString("log.logger_level"),
-		LoggerFile:     viper.GetString("log.logger_file"),
-		LogFormatText:  viper.GetBool("log.log_format_text"),
-		RollingPolicy:  viper.GetString("log.rollingPolicy"),
-		LogRotateDate:  viper.GetInt("log.log_rotate_date"),
-		LogRotateSize:  viper.GetInt("log.log_rotate_size"),
-		LogBackupCount: viper.GetInt("log.log_backup_count"),
-	})
-}
-
 // 监控配置文件变化并热加载程序
 func (c *Config) watchConfig() {
 	viper.WatchConfig()
 	viper.OnConfigChange(func(in fsnotify.Event) {
-		log.Infof("Config file changed: %s", in.Name)
+		//log.Infof("Config file changed: %s", in.Name)
+		logrus.Infof("Config file changed: %s", in.Name)
 	})
 }

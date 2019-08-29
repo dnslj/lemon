@@ -8,6 +8,7 @@ import (
 	"study/lemon/utils/token"
 	"study/lemon/utils/crypto"
 	"strconv"
+	"study/lemon/utils/logging"
 )
 
 // @Summary 登陆获取token
@@ -37,14 +38,13 @@ func Login(c *gin.Context) {
 		SendResponse(c, errno.ErrPasswordIncorrect, nil)
 		return
 	}
-
 	ctx := token.Context{UserId: d.Id, Mobile: d.Mobile, NickName: d.NickName}
 	t, err := token.CreateToken(c, ctx, "")
 	if err != nil {
 		SendResponse(c, errno.ErrToken, nil)
 		return
 	}
-
+	logging.Error(t)
 	SendResponse(c, nil, models.Token{Token: t})
 }
 
