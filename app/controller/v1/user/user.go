@@ -2,13 +2,13 @@ package user
 
 import (
 	"github.com/gin-gonic/gin"
-	"study/lemon/models"
-	"study/lemon/utils/errno"
-	. "study/lemon/app/controller"
-	"study/lemon/utils/token"
-	"study/lemon/utils/crypto"
+	"lemon/models"
+	"lemon/utils/errno"
+	. "lemon/app/controller"
+	"lemon/utils/token"
+	"lemon/utils/crypto"
 	"strconv"
-	"study/lemon/utils/logging"
+	"lemon/utils/logging"
 )
 
 // @Summary 登陆获取token

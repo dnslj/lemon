@@ -2,11 +2,11 @@ package main
 
 import (
 	"net/http"
-	"study/lemon/config"
-	"study/lemon/app/router"
+	"lemon/config"
+	"lemon/app/router"
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
-	"study/lemon/models"
+	"lemon/models"
 )
 
 func main() {

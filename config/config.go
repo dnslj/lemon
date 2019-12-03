@@ -5,7 +5,7 @@ import (
 	"github.com/fsnotify/fsnotify"
 	"strings"
 	"github.com/sirupsen/logrus"
-	"study/lemon/utils/logging"
+	"lemon/utils/logging"
 )
 
 type Config struct {
@@ -37,7 +37,7 @@ func (c *Config) initConfig() error {
 		viper.SetConfigFile(c.Name)
 	} else {
 		// 如果没有指定配置文件，则解析默认的配置文件
-		viper.AddConfigPath("lemon/config/conf")
+		viper.AddConfigPath("config/conf")
 		viper.SetConfigName("config")
 	}
 	// 设置配置文件格式为YAML

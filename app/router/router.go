@@ -4,8 +4,8 @@ import (
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"github.com/gin-contrib/pprof"
-	"study/lemon/app/middleware"
-	"study/lemon/app/controller/v1/user"
+	"lemon/app/middleware"
+	"lemon/app/controller/v1/user"
 )
 
 func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {

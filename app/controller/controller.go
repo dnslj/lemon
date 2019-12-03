@@ -2,7 +2,7 @@ package controller
 
 import (
 	"github.com/gin-gonic/gin"
-	"study/lemon/utils/errno"
+	"lemon/utils/errno"
 	"net/http"
 )
 

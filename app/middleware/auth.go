@@ -2,12 +2,12 @@ package middleware
 
 import (
 	"github.com/gin-gonic/gin"
-	"study/lemon/app/controller"
-	"study/lemon/utils/token"
-	"study/lemon/utils/errno"
-	"study/lemon/models"
+	"lemon/app/controller"
+	"lemon/utils/token"
+	"lemon/utils/errno"
+	"lemon/models"
 	"net/url"
-	"study/lemon/utils/utils"
+	"lemon/utils/utils"
 )
 
 func AuthMiddleware() gin.HandlerFunc {

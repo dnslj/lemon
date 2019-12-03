@@ -7,7 +7,7 @@ import (
 	"github.com/spf13/viper"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"os"
-	"study/lemon/utils/logging"
+	"lemon/utils/logging"
 )
 
 type Database struct {

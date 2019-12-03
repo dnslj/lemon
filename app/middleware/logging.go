@@ -9,8 +9,8 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/lexkong/log"
 	"github.com/willf/pad"
-	"study/new/gindemo/entity/errno"
-	"study/lemon/app/controller"
+	"lemon/utils/errno"
+	"lemon/app/controller"
 	"regexp"
 )
 
