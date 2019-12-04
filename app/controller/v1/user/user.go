@@ -44,7 +44,7 @@ func Login(c *gin.Context) {
 		SendResponse(c, errno.ErrToken, nil)
 		return
 	}
-	logging.Error(t)
+	logging.Info(t)
 	SendResponse(c, nil, models.Token{Token: t})
 }
 
