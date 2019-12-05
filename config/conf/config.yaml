@@ -13,7 +13,7 @@ sign_secret: 8D0C7OoCjQ4BViKSGqa4NBsSyuN
 
 # 日志配置
 log:
-  file_path: /Users/liangjian/code/github/src/lemon/logs/
+  file_path: /Users/liangjian/code/github/lemon/logs/
 
 # 数据库配置
 local_db:
