@@ -1,6 +1,8 @@
 ## ignore this file ##
 .DS_Store
-./vendor
+vendor
 .idea
-./logs
+logs
 ./cmd/test.go
+go.mod
+go.sum
