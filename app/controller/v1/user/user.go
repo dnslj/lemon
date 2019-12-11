@@ -2,13 +2,14 @@ package user
 
 import (
 	"github.com/gin-gonic/gin"
-	"lemon/models"
-	"lemon/utils/errno"
 	. "lemon/app/controller"
-	"lemon/utils/token"
+	"lemon/models"
+	"lemon/models/user"
 	"lemon/utils/crypto"
-	"strconv"
+	"lemon/utils/errno"
 	"lemon/utils/logging"
+	"lemon/utils/token"
+	"strconv"
 )
 
 // @Summary 登陆获取token
@@ -21,14 +22,14 @@ import (
 // @Success 200 {string} json "{"code":0,"message":"OK","data":{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1MjgwMTY5MjIsImlkIjowLCJuYmYiOjE1MjgwMTY5MjIsInVzZXJuYW1lIjoiYWRtaW4ifQ.LjxrK9DuAwAzUD8-9v43NzWBN7HXsSLfebw92DKd1JQ"}}"
 // @Router /user/login [post]
 func Login(c *gin.Context) {
-	var u models.UserModel
+	var u user.UserModel
 
 	if err := c.Bind(&u); err != nil {
 		SendResponse(c, errno.ErrValidation, nil)
 		return
 	}
 
-	d, err := models.GetUserByMobile(u.Mobile)
+	d, err := user.GetUserByMobile(u.Mobile)
 	if err != nil {
 		SendResponse(c, errno.ErrUserNotFound, nil)
 		return
@@ -55,7 +56,7 @@ func GetUserById(c *gin.Context) {
 		return
 	}
 
-	user, err := models.GetUserById(uint64(userId))
+	user, err := user.GetUserById(uint64(userId))
 	if err != nil {
 		SendResponse(c, errno.ErrUserNotFound, nil)
 		return

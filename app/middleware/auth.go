@@ -3,11 +3,11 @@ package middleware
 import (
 	"github.com/gin-gonic/gin"
 	"lemon/app/controller"
-	"lemon/utils/token"
+	"lemon/models/user"
 	"lemon/utils/errno"
-	"lemon/models"
-	"net/url"
+	"lemon/utils/token"
 	"lemon/utils/utils"
+	"net/url"
 )
 
 func AuthMiddleware() gin.HandlerFunc {
@@ -43,7 +43,7 @@ func AuthMiddleware() gin.HandlerFunc {
 			return
 		}
 
-		_, err = models.GetUserById(uint64(JWTpayload.UserId))
+		_, err = user.GetUserById(uint64(JWTpayload.UserId))
 		if err != nil {
 			controller.SendResponse(c, errno.ErrUserNotFound, err.Error())
 			c.Abort()

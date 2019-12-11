@@ -3,10 +3,10 @@ package models
 import (
 	"fmt"
 	"log"
+	"os"
 	"github.com/jinzhu/gorm"
 	"github.com/spf13/viper"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
-	"os"
 	"lemon/utils/logging"
 )
 
