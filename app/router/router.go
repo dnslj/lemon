@@ -1,11 +1,12 @@
 package router
 
 import (
-	"github.com/gin-gonic/gin"
-	"net/http"
 	"github.com/gin-contrib/pprof"
-	"lemon/app/middleware"
+	"github.com/gin-gonic/gin"
+	"lemon/app/controller/sd"
 	"lemon/app/controller/v1/user"
+	"lemon/app/middleware"
+	"net/http"
 )
 
 func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
@@ -35,6 +36,15 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 		userGroup.GET("", user.GetUserList)
 		userGroup.PUT("/:id", user.UpdateUserById)
 		userGroup.DELETE("/:id", user.DeleteUserById)
+	}
+
+	// The health check handlers
+	svcd := g.Group("/api/sd")
+	{
+		svcd.GET("/health", sd.HealthCheck)
+		svcd.GET("/disk", sd.DiskCheck)
+		svcd.GET("/cpu", sd.CPUCheck)
+		svcd.GET("/ram", sd.RAMCheck)
 	}
 
 	return g
