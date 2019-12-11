@@ -45,6 +45,8 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 		svcd.GET("/disk", sd.DiskCheck)
 		svcd.GET("/cpu", sd.CPUCheck)
 		svcd.GET("/ram", sd.RAMCheck)
+		svcd.GET("/host", sd.HostCheck)
+		svcd.GET("/io", sd.IOCheck)
 	}
 
 	return g
