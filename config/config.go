@@ -1,16 +1,16 @@
 package config
 
 import (
-	"github.com/spf13/viper"
 	"github.com/fsnotify/fsnotify"
-	"strings"
 	"github.com/sirupsen/logrus"
+	"github.com/spf13/viper"
 	"lemon/utils/logging"
+	"strings"
 )
 
 type Config struct {
-	Name string
-	Logger *logrus.Logger
+	Name   string
+	//Logger *logrus.Logger
 }
 
 // 初始化
@@ -44,7 +44,7 @@ func (c *Config) initConfig() error {
 	viper.SetConfigType("yaml")
 	// 读取匹配的环境变量
 	viper.AutomaticEnv()
-	// 读取环境变量的前缀为monday
+	// 读取环境变量的前缀为lemon
 	viper.SetEnvPrefix("lemon")
 	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
 	if err := viper.ReadInConfig(); err != nil {
