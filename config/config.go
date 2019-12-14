@@ -9,7 +9,7 @@ import (
 )
 
 type Config struct {
-	Name   string
+	Name string
 	//Logger *logrus.Logger
 }
 
@@ -45,7 +45,7 @@ func (c *Config) initConfig() error {
 	// 读取匹配的环境变量
 	viper.AutomaticEnv()
 	// 读取环境变量的前缀为lemon
-	viper.SetEnvPrefix("lemon")
+	viper.SetEnvPrefix("LEMON")
 	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
 	if err := viper.ReadInConfig(); err != nil {
 		return err

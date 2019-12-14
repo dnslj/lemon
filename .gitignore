@@ -3,7 +3,7 @@
 vendor
 .idea
 logs
-./cmd/test.go
+cmd/test.go
 go.mod
 go.sum
 README.md
