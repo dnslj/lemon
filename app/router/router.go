@@ -20,13 +20,22 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 	g.Use(mw...)
 
 	// 404 handler
-	g.NoRoute(func(c *gin.Context) {
-		c.String(http.StatusNotFound, "Not found.")
-	})
+	g.NoRoute(func(c *gin.Context) { c.String(http.StatusNotFound, "Not found.") })
 
-	// pprof router
+	// 性能分析工具
 	pprof.Register(g)
 
+	// 系统健康检查
+	svcd := g.Group("/api/sd")
+	{
+		svcd.GET("/health", sd.HealthCheck).GET("/disk", sd.DiskCheck)
+		svcd.GET("/cpu", sd.CPUCheck)
+		svcd.GET("/ram", sd.RAMCheck)
+		svcd.GET("/host", sd.HostCheck)
+		svcd.GET("/io", sd.IOCheck)
+	}
+
+	// web页面路由
 	g.POST("/api/v1/login", user.Login)
 
 	userGroup := g.Group("/api/v1/user")
@@ -36,17 +45,6 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 		userGroup.GET("", user.GetUserList)
 		userGroup.PUT("/:id", user.UpdateUserById)
 		userGroup.DELETE("/:id", user.DeleteUserById)
-	}
-
-	// The health check handlers
-	svcd := g.Group("/api/sd")
-	{
-		svcd.GET("/health", sd.HealthCheck)
-		svcd.GET("/disk", sd.DiskCheck)
-		svcd.GET("/cpu", sd.CPUCheck)
-		svcd.GET("/ram", sd.RAMCheck)
-		svcd.GET("/host", sd.HostCheck)
-		svcd.GET("/io", sd.IOCheck)
 	}
 
 	return g
