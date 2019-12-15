@@ -1,12 +1,12 @@
 package logging
 
 import (
-	"fmt"
-	"github.com/spf13/viper"
-	"log"
 	"os"
-	"path/filepath"
+	"log"
+	"fmt"
 	"runtime"
+	"path/filepath"
+	"github.com/spf13/viper"
 	"time"
 )
 
@@ -24,7 +24,7 @@ var (
 )
 
 const (
-	DEBUG Level = iota
+	DEBUG   Level = iota
 	INFO
 	WARNING
 	ERROR
@@ -63,7 +63,7 @@ func Debug(v ...interface{}) {
 
 func Debugf(format string, v ...interface{}) {
 	setPrefix(DEBUG)
-	logger.Println(format, v)
+	logger.Printf(format, v...)
 }
 
 // Info output logs at info level
@@ -74,7 +74,7 @@ func Info(v ...interface{}) {
 
 func Infof(format string, v ...interface{}) {
 	setPrefix(INFO)
-	logger.Println(format, v)
+	logger.Printf(format, v...)
 }
 
 // Warn output logs at warn level
@@ -85,7 +85,7 @@ func Warn(v ...interface{}) {
 
 func Warnf(format string, v ...interface{}) {
 	setPrefix(WARNING)
-	logger.Println(format, v)
+	logger.Printf(format, v...)
 }
 
 // Error output logs at error level
@@ -96,7 +96,7 @@ func Error(v ...interface{}) {
 
 func Errorf(format string, v ...interface{}) {
 	setPrefix(ERROR)
-	logger.Println(format, v)
+	logger.Printf(format, v...)
 }
 
 // Fatal output logs at fatal level
@@ -107,7 +107,7 @@ func Fatal(v ...interface{}) {
 
 func Fatalf(format string, v ...interface{}) {
 	setPrefix(FATAL)
-	logger.Fatalln(format, v)
+	logger.Fatalf(format, v...)
 }
 
 // setPrefix set the prefix of the log output

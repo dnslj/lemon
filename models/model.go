@@ -36,7 +36,7 @@ func openDB(username, password, addr, name string) *gorm.DB {
 	db, err := gorm.Open("mysql", config)
 
 	if err != nil {
-		logging.Error(err, "Database connection failed. Database name: %s", name)
+		logging.Errorf("Database connection failed. Database name: %s, Error info: %s", name, err)
 	}
 
 	// Gorm有内置的日志记录器支持，默认情况下，它会打印发生的错误
