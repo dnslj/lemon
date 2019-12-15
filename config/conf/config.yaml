@@ -24,7 +24,7 @@ log:
   log_backup_count: 7
 
 # 数据库配置
-local_db:
+default_db:
   name: go
   addr: 127.0.0.1:3306
   username: root

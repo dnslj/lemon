@@ -12,13 +12,13 @@ import (
 )
 
 type BaseModel struct {
-	Id        uint64        `gorm:"primary_key;AUTO_INCREMENT;column:id" json:"-"`
-	CreatedAt time.Duration `gorm:"column:create_at" json:"-"`
-	UpdatedAt time.Duration `gorm:"column:update_at" json:"-"`
+	Id        uint64     `gorm:"primary_key;AUTO_INCREMENT;column:id" json:"-"`
+	CreatedAt *time.Time `gorm:"column:create_at" json:"-"`
+	UpdatedAt *time.Time `gorm:"column:update_at" json:"-"`
 }
 
 type Database struct {
-	Local *gorm.DB
+	Default *gorm.DB
 }
 
 var DB *Database
@@ -60,14 +60,14 @@ func openDB(username, password, addr, name string) *gorm.DB {
 
 func (db *Database) Init() {
 	DB = &Database{
-		Local: openDB(viper.GetString("local_db.username"),
-			viper.GetString("local_db.password"),
-			viper.GetString("local_db.addr"),
-			viper.GetString("local_db.name"),
+		Default: openDB(viper.GetString("default_db.username"),
+			viper.GetString("default_db.password"),
+			viper.GetString("default_db.addr"),
+			viper.GetString("default_db.name"),
 		),
 	}
 }
 
 func (db *Database) Close() {
-	DB.Local.Close()
+	DB.Default.Close()
 }

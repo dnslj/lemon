@@ -66,5 +66,5 @@ func CreateSign(params url.Values) string {
 	}
 
 	// 自定义签名算法
-	return MD5(MD5(str) + MD5(viper.GetString("local_db.addr")))
+	return MD5(MD5(str) + MD5(viper.GetString("default_db.addr")))
 }

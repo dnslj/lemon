@@ -1,6 +1,7 @@
 package user
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	. "lemon/app/controller"
 	"lemon/models/user"
@@ -8,18 +9,22 @@ import (
 	"lemon/utils/errno"
 	"lemon/utils/logging"
 	"lemon/utils/token"
+	"lemon/utils/utils"
 	"strconv"
+	"time"
 )
 
-// @Summary 登陆获取token
-// @Description 登陆获取token
-// @Tags user
-// @Accept  json
-// @Produce  json
-// @Param mobile path string true "Mobile"
-// @Param password path string true "Password"
-// @Success 200 {string} json "{"code":0,"message":"OK","data":{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1MjgwMTY5MjIsImlkIjowLCJuYmYiOjE1MjgwMTY5MjIsInVzZXJuYW1lIjoiYWRtaW4ifQ.LjxrK9DuAwAzUD8-9v43NzWBN7HXsSLfebw92DKd1JQ"}}"
-// @Router /user/login [post]
+/**
+ * @api {post} /user/login 登陆获取token
+ * @apiName Login
+ * @apiGroup User
+ *
+ * @apiParam {String} mobile 手机号码
+ * @apiParam {String} password 登陆密码
+ *
+ * @apiSuccess {String} firstname Firstname of the User.
+ * @apiSuccess {String} lastname  Lastname of the User.
+ */
 func Login(c *gin.Context) {
 	var u user.UserModel
 
@@ -65,11 +70,31 @@ func GetUserById(c *gin.Context) {
 }
 
 func GetUserList(c *gin.Context) {
-
+	userList, err := user.GetUserList()
+	if err != nil {
+		SendResponse(c, errno.ErrUserNotFound, nil)
+	}
+	for k, v := range userList {
+		fmt.Println(v.Id)
+		fmt.Println(v.Mobile)
+		fmt.Println(k, v)
+	}
+	SendResponse(c, nil, userList)
 }
 
 func UpdateUserById(c *gin.Context) {
+	userId, err := strconv.Atoi(c.Param("id"))
+	if err != nil {
+		SendResponse(c, errno.ErrValidation, nil)
+		return
+	}
 
+	fmt.Println(utils.GetTimeStandar())
+	user.UpdateUserById(uint64(userId), map[string]interface{}{
+		"update_at": time.Now(),
+	})
+
+	SendResponse(c, nil, nil)
 }
 
 func DeleteUserById(c *gin.Context) {
