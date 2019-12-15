@@ -3,7 +3,6 @@ package user
 import (
 	"github.com/gin-gonic/gin"
 	. "lemon/app/controller"
-	"lemon/models"
 	"lemon/models/user"
 	"lemon/utils/crypto"
 	"lemon/utils/errno"
@@ -46,7 +45,7 @@ func Login(c *gin.Context) {
 		return
 	}
 	logging.Info(t)
-	SendResponse(c, nil, models.Token{Token: t})
+	SendResponse(c, nil, user.Token{Token: t})
 }
 
 func GetUserById(c *gin.Context) {

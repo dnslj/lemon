@@ -14,6 +14,14 @@ sign_secret: 8D0C7OoCjQ4BViKSGqa4NBsSyuN
 # 日志配置
 log:
   file_path: /Users/liangjian/code/github/lemon/logs/
+  writers: stdout
+  logger_level: DEBUG
+  logger_file: logs/log.log
+  log_format_text: true
+  rollingPolicy: size
+  log_rotate_date: 1
+  log_rotate_size: 1
+  log_backup_count: 7
 
 # 数据库配置
 local_db:
