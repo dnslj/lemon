@@ -35,16 +35,18 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 		svcd.GET("/io", sd.IOCheck)
 	}
 
-	// web页面路由
-	g.POST("/api/v1/login", user.Login)
+	v1Group := g.Group("/api/v1")
+	v1Group.GET("/test", user.Test)
 
-	userGroup := g.Group("/api/v1/user")
-	userGroup.Use(middleware.AuthMiddleware())
+	// web页面路由
+	v1Group.POST("/login", user.Login)
+
+	v1Group.Use(middleware.AuthMiddleware())
 	{
-		userGroup.GET("/:id", user.GetUserById)
-		userGroup.GET("", user.GetUserList)
-		userGroup.PUT("/:id", user.UpdateUserById)
-		userGroup.DELETE("/:id", user.DeleteUserById)
+		v1Group.GET("/user/:id", user.GetUserById)
+		v1Group.GET("/users", user.GetUserList)
+		v1Group.PUT("/user/:id", user.UpdateUserById)
+		v1Group.DELETE("/user/:id", user.DeleteUserById)
 	}
 
 	return g
