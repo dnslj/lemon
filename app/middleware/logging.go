@@ -4,13 +4,13 @@ import (
 	"bytes"
 	"encoding/json"
 	"io/ioutil"
+	"lemon/utils/logging"
 	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/lexkong/log"
 	"github.com/willf/pad"
-	"lemon/utils/errno"
 	"lemon/app/controller"
+	"lemon/utils/errno"
 	"regexp"
 )
 
@@ -72,7 +72,8 @@ func Logging() gin.HandlerFunc {
 		// get code and message
 		var response controller.Response
 		if err := json.Unmarshal(blw.body.Bytes(), &response); err != nil {
-			log.Errorf(err, "response body can not unmarshal to model.Response struct, body: `%s`", blw.body.Bytes())
+			logging.Errorf("response body can not unmarshal to model.Response struct, body: `%s`", blw.body.Bytes())
+			//log.Errorf(err, "response body can not unmarshal to model.Response struct, body: `%s`", blw.body.Bytes())
 			code = errno.InternalServerError.Code
 			message = err.Error()
 		} else {
@@ -80,6 +81,6 @@ func Logging() gin.HandlerFunc {
 			message = response.Message
 		}
 
-		log.Infof("%-13s | %-12s | %s %s | {code: %d, message: %s}", latency, ip, pad.Right(method, 5, ""), path, code, message)
+		logging.Infof("%-13s | %-12s | %s %s | {code: %d, message: %s}", latency, ip, pad.Right(method, 5, ""), path, code, message)
 	}
 }

@@ -1,9 +1,6 @@
 package config
 
 import (
-	"github.com/fsnotify/fsnotify"
-	"github.com/lexkong/log"
-	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 	"lemon/utils/logging"
 	"strings"
@@ -26,8 +23,8 @@ func Init(cfg string) error {
 	}
 
 	logging.Init()
-	c.initLog()
-	c.watchConfig()
+	//c.initLog()
+	//c.watchConfig()
 
 	return nil
 }
@@ -52,7 +49,7 @@ func (c *Config) initConfig() error {
 	return nil
 }
 
-func (c *Config) initLog() {
+/*func (c *Config) initLog() {
 	passLagerCfg := log.PassLagerCfg{
 		Writers:        viper.GetString("log.writers"),
 		LoggerLevel:    viper.GetString("log.logger_level"),
@@ -64,13 +61,13 @@ func (c *Config) initLog() {
 		LogBackupCount: viper.GetInt("log.log_backup_count"),
 	}
 	log.InitWithConfig(&passLagerCfg)
-}
+}*/
 
 // 监控配置文件变化并热加载程序
-func (c *Config) watchConfig() {
+/*func (c *Config) watchConfig() {
 	viper.WatchConfig()
 	viper.OnConfigChange(func(in fsnotify.Event) {
 		//log.Infof("Config file changed: %s", in.Name)
 		logrus.Infof("Config file changed: %s", in.Name)
 	})
-}
+}*/
