@@ -1,6 +1,17 @@
 package crypto
 
-import "golang.org/x/crypto/bcrypt"
+import (
+	"crypto/md5"
+	"encoding/hex"
+	"golang.org/x/crypto/bcrypt"
+)
+
+// MD5 方法
+func MD5(str string) string {
+	s := md5.New()
+	s.Write([]byte(str))
+	return hex.EncodeToString(s.Sum(nil))
+}
 
 // 使用bcrypt加密字符串
 func Encrypt(source string) (string, error) {

@@ -1,12 +1,12 @@
 package logging
 
 import (
-	"os"
-	"log"
 	"fmt"
-	"runtime"
-	"path/filepath"
 	"github.com/spf13/viper"
+	"log"
+	"os"
+	"path/filepath"
+	"runtime"
 	"time"
 )
 
@@ -24,7 +24,7 @@ var (
 )
 
 const (
-	DEBUG   Level = iota
+	DEBUG Level = iota
 	INFO
 	WARNING
 	ERROR

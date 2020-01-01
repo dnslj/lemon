@@ -64,8 +64,8 @@ func CreateToken(ctx *gin.Context, c Context, secret string) (tokenString string
 		"UserId":   c.UserId,
 		"Mobile":   c.Mobile,
 		"NickName": c.NickName,
-		"nbf":      time.Now().Unix(), // 如果当前时间在nbf时间之前，则Token不被接受；一般都会留一些余地，比如几分钟。
-		"exp": time.Now().Unix() + 3600*2, // token过期时间
+		"nbf":      time.Now().Unix(),          // 如果当前时间在nbf时间之前，则Token不被接受；一般都会留一些余地，比如几分钟。
+		"exp":      time.Now().Unix() + 3600*2, // token过期时间
 	})
 	tokenString, err = token.SignedString([]byte(secret))
 	return

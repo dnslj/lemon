@@ -103,7 +103,7 @@ func UpdateUserById(c *gin.Context) {
 		return
 	}
 
-	fmt.Println(utils.GetTimeStandar())
+	fmt.Println(utils.TimeStandar())
 	user.UpdateUserById(uint64(userId), map[string]interface{}{
 		"update_at": time.Now(),
 	})

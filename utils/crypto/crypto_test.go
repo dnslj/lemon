@@ -5,6 +5,10 @@ import (
 	"testing"
 )
 
+func TestMD5(t *testing.T) {
+	fmt.Println(MD5("lemon"))
+}
+
 func TestEncrypt(t *testing.T) {
 	fmt.Println(Encrypt("123"))
 }

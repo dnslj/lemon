@@ -1,21 +1,20 @@
 package main
 
 import (
-	"net/http"
-	"lemon/config"
-	"lemon/app/router"
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
+	"lemon/app/router"
+	"lemon/config"
 	"lemon/models"
+	"net/http"
 )
 
 func main() {
-	if err := config.Init(""); err != nil{
+	if err := config.Init(""); err != nil {
 		panic(err)
 	}
 
 	gin.SetMode(viper.GetString("runmode"))
-
 	models.DB.Init()
 	defer models.DB.Close()
 
