@@ -1,18 +1,21 @@
 #!/bin/bash
 
-BASE_DIR=$(echo $PWD)
+SERVICE_NAME="lemon-web"
+SERVICE_HOME=$(echo $PWD)
+PROCESS_PATH="/cmd/bin/"
+LEMON_WEB_PATH="${SERVICE_HOME}${PROCESS_PATH}${SERVICE_NAME}"
 
 buildServer() {
   echo 'server building...'
   export GOPROXY=https://goproxy.cn
 
-  cd $BASE_DIR
   if [ ! -d logs ]; then mkdir logs; fi
 
   gofmt -w -s .
 
-  if [ ! -d './cmd/bin' ]; then mkdir cmd/bin; fi
-  go build -o cmd/bin/main cmd/main.go
+  BIN_FOLDER=${SERVICE_HOME}${PROCESS_PATH}
+  if [ ! -d $BIN_FOLDER ]; then mkdir -p $BIN_FOLDER; fi
+  go build -o $LEMON_WEB_PATH ${SERVICE_HOME}/cmd/main.go
   echo 'server built finished'
 }
 

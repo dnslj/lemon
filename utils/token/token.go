@@ -9,7 +9,7 @@ import (
 )
 
 type Context struct {
-	UserId   uint64
+	UserId   int
 	Mobile   string
 	NickName string
 }
@@ -36,7 +36,7 @@ func ParseToken(tokenString, secret string) (*Context, error) {
 	if err != nil {
 		return ctx, err
 	} else if claims, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
-		ctx.UserId = uint64(claims["UserId"].(float64))
+		ctx.UserId = int(claims["UserId"].(float64))
 		ctx.Mobile = claims["Mobile"].(string)
 		ctx.NickName = claims["NickName"].(string)
 		return ctx, nil

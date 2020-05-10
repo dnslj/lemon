@@ -14,20 +14,6 @@ import (
 	"time"
 )
 
-func Test(c *gin.Context) {
-	// Query			PostForm			获取key对应的值，不存在为空字符串
-	// GetQuery			GetPostForm			多返回一个key是否存在的结果
-	// QueryArray		PostFormArray		获取key对应的数组，不存在返回一个空数组
-	// GetQueryArray	GetPostFormArray	多返回一个key是否存在的结果
-	// QueryMap			PostFormMap			获取key对应的map，不存在返回空map
-	// GetQueryMap		GetPostFormMap		多返回一个key是否存在的结果
-	// DefaultQuery		DefaultPostForm		key不存在的话，可以指定返回的默认值
-
-	// queryArray := c.QueryArray("media")
-	queryMap := c.QueryMap("ids")
-	SendResponse(c, nil, queryMap)
-}
-
 /**
  * @api {post} /user/login 登陆获取token
  * @apiName Login
@@ -40,6 +26,7 @@ func Test(c *gin.Context) {
  * @apiSuccess {String} lastname  Lastname of the User.
  */
 func Login(c *gin.Context) {
+	time.Sleep(5 * time.Second)
 	var u user.UserModel
 
 	if err := c.Bind(&u); err != nil {
@@ -68,13 +55,16 @@ func Login(c *gin.Context) {
 }
 
 func GetUserById(c *gin.Context) {
+	fmt.Println(c.Get("UserId"))
+	fmt.Println(c.Get("Mobile"))
+	fmt.Println(c.Get("NickName"))
 	userId, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
 		SendResponse(c, errno.ErrValidation, nil)
 		return
 	}
 
-	user, err := user.GetUserById(uint64(userId))
+	user, err := user.GetUserById(userId)
 	if err != nil {
 		SendResponse(c, errno.ErrUserNotFound, nil)
 		return
@@ -104,7 +94,7 @@ func UpdateUserById(c *gin.Context) {
 	}
 
 	fmt.Println(utils.TimeStandar())
-	user.UpdateUserById(uint64(userId), map[string]interface{}{
+	user.UpdateUserById(userId, map[string]interface{}{
 		"update_at": time.Now(),
 	})
 

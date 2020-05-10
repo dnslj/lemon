@@ -5,10 +5,12 @@ go 1.13
 require (
 	github.com/PuerkitoBio/goquery v1.5.0
 	github.com/StackExchange/wmi v0.0.0-20190523213315-cbe66965904d // indirect
+	github.com/chenhg5/collection v0.0.0-20191118032303-cb21bccce4c3
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/gin-contrib/pprof v1.2.1
 	github.com/gin-gonic/gin v1.5.0
 	github.com/go-ole/go-ole v1.2.4 // indirect
+	github.com/golang/protobuf v1.3.4 // indirect
 	github.com/iris-contrib/go.uuid v2.0.0+incompatible
 	github.com/jinzhu/gorm v1.9.11
 	github.com/satori/go.uuid v1.2.0

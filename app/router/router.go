@@ -4,6 +4,7 @@ import (
 	"github.com/gin-contrib/pprof"
 	"github.com/gin-gonic/gin"
 	"lemon/app/controller/sd"
+	"lemon/app/controller/v1/test"
 	"lemon/app/controller/v1/user"
 	"lemon/app/middleware"
 	"net/http"
@@ -36,7 +37,8 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 	}
 
 	v1Group := g.Group("/api/v1")
-	v1Group.GET("/test", user.Test)
+	v1Group.GET("/test/request", test.Request)
+	v1Group.GET("/test/gorm", test.Gorm)
 
 	// web页面路由
 	v1Group.POST("/login", user.Login)

@@ -1,8 +1,8 @@
 # 全局配置
 runmode: release
-addr: :8080
+addr: :8001
 name: lemon
-url: http://127.0.0.1:8080
+url: http://127.0.0.1:8001
 
 # 日志存储路径
 

@@ -27,9 +27,9 @@ func (user *UserModel) Update() error {
 	return models.DB.Default.Save(&user).Error
 }
 
-func GetUserById(UserId uint64) (*UserModel, error) {
+func GetUserById(UserId int) (*UserModel, error) {
 	user := &UserModel{}
-	d := models.DB.Default.Where("id = ?", UserId).First(&user)
+	d := models.DB.Default.First(&user, UserId)
 	return user, d.Error
 }
 
@@ -45,7 +45,7 @@ func GetUserList() ([]*UserModel, error) {
 	return users, d.Error
 }
 
-func UpdateUserById(UserId uint64, data interface{}) error {
+func UpdateUserById(UserId int, data interface{}) error {
 	result := models.DB.Default.Model(&UserModel{}).Where("id=?", UserId).Updates(data)
 	if result.Error != nil {
 		return result.Error

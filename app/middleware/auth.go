@@ -43,7 +43,7 @@ func AuthMiddleware() gin.HandlerFunc {
 			return
 		}
 
-		_, err = user.GetUserById(uint64(JWTpayload.UserId))
+		_, err = user.GetUserById(int(JWTpayload.UserId))
 		if err != nil {
 			controller.SendResponse(c, errno.ErrUserNotFound, err.Error())
 			c.Abort()
@@ -55,7 +55,7 @@ func AuthMiddleware() gin.HandlerFunc {
 		c.Set("NickName", JWTpayload.NickName)
 
 		//// 更新最后操作时间
-		//go model.UpdateLastSeen(uint(JWTpayload.UserId))
+		//go model.UpdateLastSeen(JWTpayload.UserId)
 
 		c.Next()
 	}
