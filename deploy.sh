@@ -47,7 +47,7 @@ function op_start() {
     exit 0
   fi
   $LEMON_WEB_PATH >>${SERVICE_LOG_PATH}${SERVICE_NAME}-${DATE_TIME}.log 2>&1 &
-  echo "service: $SERVICE_NAME is running, process details:"
+  echo "\nservice: $SERVICE_NAME is running, process details:"
   ps -ef | grep $SERVICE_NAME | grep -v grep
 }
 
