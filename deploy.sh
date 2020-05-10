@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 SERVICE_NAME="lemon-web"
 SERVICE_HOME=$(echo $PWD)

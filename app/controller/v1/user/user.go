@@ -26,7 +26,6 @@ import (
  * @apiSuccess {String} lastname  Lastname of the User.
  */
 func Login(c *gin.Context) {
-	time.Sleep(5 * time.Second)
 	var u user.UserModel
 
 	if err := c.Bind(&u); err != nil {
