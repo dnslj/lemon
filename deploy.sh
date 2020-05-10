@@ -36,9 +36,11 @@ function stop_service() {
 }
 
 function op_start() {
+  # 编译
   buildServer
   echo 'all build done'
 
+  # 开启服务
   count=$(ps -ef | grep $SERVICE_NAME | wc -l)
   if [ $count -gt 2 ]; then
     echo "service: $SERVICE_NAME is running"
