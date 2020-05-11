@@ -9,7 +9,6 @@ import (
 	"lemon/utils/errno"
 	"lemon/utils/logging"
 	"lemon/utils/token"
-	"lemon/utils/utils"
 	"strconv"
 	"time"
 )
@@ -92,10 +91,13 @@ func UpdateUserById(c *gin.Context) {
 		return
 	}
 
-	fmt.Println(utils.TimeStandar())
-	user.UpdateUserById(userId, map[string]interface{}{
-		"update_at": time.Now(),
-	})
+	user, err := user.GetUserById(userId)
+	user.Id = userId
+	user.UpdatedAt = time.Now()
+	user.Update()
+	//user.UpdateUserById(userId, map[string]interface{}{
+	//	"update_at": time.Now(),
+	//})
 
 	SendResponse(c, nil, nil)
 }

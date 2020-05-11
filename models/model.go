@@ -13,8 +13,8 @@ import (
 
 type BaseModel struct {
 	Id        int        `gorm:"primary_key;AUTO_INCREMENT;column:id" json:"-"`
-	CreatedAt *time.Time `gorm:"column:create_at" json:"-"`
-	UpdatedAt *time.Time `gorm:"column:update_at" json:"-"`
+	CreatedAt time.Time `gorm:"column:create_at" json:"-"`
+	UpdatedAt time.Time `gorm:"column:update_at" json:"-"`
 }
 
 type Database struct {

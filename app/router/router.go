@@ -3,7 +3,6 @@ package router
 import (
 	"github.com/gin-contrib/pprof"
 	"github.com/gin-gonic/gin"
-	"lemon/app/controller/sd"
 	"lemon/app/controller/v1/test"
 	"lemon/app/controller/v1/user"
 	"lemon/app/middleware"
@@ -27,14 +26,14 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 	pprof.Register(g)
 
 	// 系统健康检查
-	svcd := g.Group("/api/sd")
-	{
-		svcd.GET("/health", sd.HealthCheck).GET("/disk", sd.DiskCheck)
-		svcd.GET("/cpu", sd.CPUCheck)
-		svcd.GET("/ram", sd.RAMCheck)
-		svcd.GET("/host", sd.HostCheck)
-		svcd.GET("/io", sd.IOCheck)
-	}
+	//svcd := g.Group("/api/sd")
+	//{
+	//	svcd.GET("/health", sd.HealthCheck).GET("/disk", sd.DiskCheck)
+	//	svcd.GET("/cpu", sd.CPUCheck)
+	//	svcd.GET("/ram", sd.RAMCheck)
+	//	svcd.GET("/host", sd.HostCheck)
+	//	svcd.GET("/io", sd.IOCheck)
+	//}
 
 	v1Group := g.Group("/api/v1")
 	v1Group.GET("/test/request", test.Request)
