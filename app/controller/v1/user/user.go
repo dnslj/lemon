@@ -49,7 +49,7 @@ func Login(c *gin.Context) {
 		return
 	}
 	logging.Info(t)
-	SendResponse(c, nil, user.Token{Token: t})
+	SendResponse(c, nil, user.Token{Token: t, ExpireIn: 3600 * 2})
 }
 
 func GetUserById(c *gin.Context) {
