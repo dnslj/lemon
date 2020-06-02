@@ -3,7 +3,6 @@
 * export GOPROXY=https://goproxy.cn
 * export GO111MODULE=on
 
-
 ### go mod 使用
 * go mod init # 初始化当前目录为模块根目录，生成go.mod, go.sum文件
 * go mod download # 下载依赖包
